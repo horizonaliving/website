@@ -18,12 +18,12 @@ if (toggle && links) {
   });
 }
 
-/* ——— Contact form — client-side demo handler ——— */
+/* ——— Contact form — Formspree AJAX submission ——— */
 const form    = document.getElementById('contact-form');
 const success = document.getElementById('success-msg');
 
 if (form && success) {
-  form.addEventListener('submit', (e) => {
+  form.addEventListener('submit', async (e) => {
     e.preventDefault();
 
     const required = form.querySelectorAll('[required]');
@@ -36,17 +36,42 @@ if (form && success) {
         el.style.borderColor = '';
       }
     });
-
     if (!valid) return;
 
-    /* In production, replace this block with a real form submission
-       (e.g. fetch to a backend endpoint, Formspree, Netlify Forms, etc.) */
-    form.querySelectorAll('input, select, textarea, button').forEach(el => {
-      el.setAttribute('disabled', '');
-    });
+    const submitBtn = form.querySelector('button[type="submit"]');
+    const originalLabel = submitBtn ? submitBtn.textContent : '';
+    if (submitBtn) {
+      submitBtn.setAttribute('disabled', '');
+      submitBtn.textContent = 'Sending…';
+    }
 
-    success.style.display = 'block';
-    success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+    try {
+      const res = await fetch(form.action, {
+        method: 'POST',
+        body: new FormData(form),
+        headers: { 'Accept': 'application/json' }
+      });
+      if (res.ok) {
+        form.querySelectorAll('input, select, textarea').forEach(el => el.setAttribute('disabled', ''));
+        if (submitBtn) submitBtn.textContent = 'Message Sent';
+        success.style.display = 'block';
+        success.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+      } else {
+        const data = await res.json().catch(() => ({}));
+        const msg = (data.errors && data.errors.map(e => e.message).join(', ')) || 'Something went wrong. Please call us at (763) 900-6456.';
+        alert(msg);
+        if (submitBtn) {
+          submitBtn.removeAttribute('disabled');
+          submitBtn.textContent = originalLabel;
+        }
+      }
+    } catch (err) {
+      alert('Network error. Please try again or call us at (763) 900-6456.');
+      if (submitBtn) {
+        submitBtn.removeAttribute('disabled');
+        submitBtn.textContent = originalLabel;
+      }
+    }
   });
 
   /* Clear field error highlight on input */
