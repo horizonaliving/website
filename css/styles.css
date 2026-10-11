@@ -34,7 +34,7 @@
 
   --radius: 4px;
   --max-w: 1200px;
-  --nav-h: 88px;
+  --nav-h: 104px;
 }
 
 /* ——— Reset ——— */
@@ -1288,3 +1288,8 @@ a { color: inherit; text-decoration: none; }
 .vet-call:hover { background: #FFFFFF; color: var(--meadow) !important; }
 @media (max-width: 900px) { .vet-grid { grid-template-columns: 1fr; } }
 @media (max-width: 640px) { .veterans-section { padding: 64px 0; } }
+
+/* ——— Logo image ——— */
+.nav-logo-img { display: block; height: 90px; width: auto; }
+.footer-logo-img { display: block; height: 110px; width: auto; margin-bottom: 18px; }
+@media (max-width: 640px) { .nav-logo-img { height: 60px; } }
