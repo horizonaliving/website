@@ -6,26 +6,26 @@
 
 /* ——— Tokens ——— */
 :root {
-  /* Meadow green palette — matched to the Horizon brochure */
-  --forest:     #1F3A2C;  /* deep green: headings and text */
+  /* Colors measured from the Horizon brochure */
+  --forest:     #1F392B;  /* deep green: headings and text */
   --forest-2:   #2A4D3A;
-  --meadow:     #3F6B2E;  /* grassy green: banners and dark sections */
+  --meadow:     #3F6B2A;  /* grassy green: banners and dark sections */
   --meadow-2:   #34592A;  /* meadow hover */
   --moss:       #5C7F4A;
   --sage:       #9DBB5A;
   --teal:       #2E7A80;
-  --blue:       #2E7A80;  /* brochure teal-blue: labels, icons, links */
-  --sky:        #8CC3C2;  /* light blue */
+  --blue:       #2F7A80;  /* brochure teal-blue: labels, icons, links */
+  --sky:        #8CC3C1;  /* light blue */
   --sun:        #F2CF66;  /* soft yellow: numbers on green sections */
-  --terracotta: #B85F3D;
+  --terracotta: #B8603E;
   --clay:       #F2B08F;  /* soft peach accent on green sections */
-  --bone:       #F3F7EE;  /* page background */
-  --cream:      #E8F0DC;  /* alternate section background */
-  --sand:       #D6E3C3;
+  --bone:       #F3F8EE;  /* page background */
+  --cream:      #E7F0DF;  /* alternate section background */
+  --sand:       #D8E7CC;
   --ink:        #17201A;
   --char:       #263028;
   --mute:       #5E6A5A;
-  --line:       #C9D8B8;
+  --line:       #B9CDAA;
 
   --font-display: 'Fraunces', serif;
   --font-body:    'Inter Tight', system-ui, sans-serif;
@@ -1225,3 +1225,40 @@ a { color: inherit; text-decoration: none; }
   .values-section { padding: 64px 0; }
   .values-grid { grid-template-columns: 1fr; }
 }
+
+/* ——— Light sage banners (matches brochure panels) ——— */
+.hero, .page-hero { background: var(--sand); color: var(--forest); }
+.hero::before {
+  background-image:
+    linear-gradient(90deg, var(--sand) 40%, rgba(216,231,204,0.9) 60%, rgba(216,231,204,0.72) 100%),
+    url('https://images.unsplash.com/photo-1470229722913-7c0e2dbbafd3?w=1600&auto=format&fit=crop&q=80');
+  background-size: cover;
+  background-position: center right;
+}
+.page-hero::before,
+.page-hero.services-hero::before,
+.page-hero.contact-hero::before { background-color: var(--sand); }
+.page-hero::before { background-image: none; }
+.page-hero.services-hero::before {
+  background-image:
+    linear-gradient(100deg, var(--sand) 45%, rgba(216,231,204,0.9) 65%, rgba(216,231,204,0.72) 100%),
+    url('https://images.unsplash.com/photo-1513161455079-7dc1de15ef3e?w=1600&auto=format&fit=crop&q=80');
+}
+.page-hero.contact-hero::before {
+  background-image:
+    linear-gradient(100deg, var(--sand) 45%, rgba(216,231,204,0.9) 65%, rgba(216,231,204,0.72) 100%),
+    url('https://images.unsplash.com/photo-1511497584788-876760111969?w=1600&auto=format&fit=crop&q=80');
+}
+.hero::after { background: var(--line); }
+.page-hero { border-bottom: 1px solid var(--line); }
+.hero-eyebrow, .page-hero .ph-eyebrow { color: var(--blue); opacity: 1; }
+.hero h1 em, .page-hero h1 em { color: var(--terracotta); }
+.hero-body, .page-hero p { color: var(--char); opacity: 1; }
+.hero-card { background: rgba(243,248,238,0.85); border: 1px solid var(--line); }
+.hero-stat { border-bottom-color: var(--line); }
+.hero-stat .number { color: var(--blue); }
+.hero-stat .label { color: var(--terracotta); opacity: 1; }
+.hero-stat .desc { color: var(--char); opacity: 1; }
+.hero .btn-outline { border-color: var(--forest) !important; color: var(--forest) !important; }
+.hero .btn-outline:hover { background: var(--forest); color: var(--bone) !important; }
+.site-footer::before { background-color: transparent; }
