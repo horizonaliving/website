@@ -20,5 +20,5 @@ Deployed via GitHub Pages. Any push to `main` auto-publishes.
 
 Horizon Assisted Living  
 3136 Bloomington Ave S  
-Minneapolis, MN 55418  
+Minneapolis, MN 55407  
 (763) 900-6456 · contact@horizonaliving.com
